@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>非公認インカレ言語愛好会</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;600&family=Playfair+Display:wght@500;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --off-white: #F7F7F7;
+            --navy: #2E3440;
+            --sage: #8FAEA0;
+            --dusty-pink: #E6B8C2;
+            --light-gray: #ECECEC;
+        }
+
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            background: var(--off-white);
+            color: var(--navy);
+            line-height: 1.8;
+            overflow-x: hidden;
+        }
+
+        section {
+            padding: 80px 5%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 90vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            flex: 1;
+            z-index: 2;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            font-weight: 300;
+            line-height: 1.3;
+            margin-bottom: 1rem;
+            letter-spacing: 0.05em;
+        }
+
+        .hero .subtitle {
+            font-size: clamp(1rem, 2vw, 1.3rem);
+            color: var(--sage);
+            margin-bottom: 0.5rem;
+            font-weight: 400;
+        }
+
+        .hero .tagline {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(0.9rem, 1.8vw, 1.1rem);
+            color: rgba(46, 52, 64, 0.6);
+            font-style: italic;
+            letter-spacing: 0.1em;
+        }
+
+        .hero-visual {
+            flex: 1;
+            position: relative;
+            height: 500px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .floating-text {
+            position: absolute;
+            font-size: clamp(1rem, 2vw, 1.5rem);
+            opacity: 0.15;
+            font-weight: 300;
+            animation: float 20s infinite ease-in-out;
+        }
+
+        .floating-text:nth-child(1) { top: 10%; left: 20%; animation-delay: 0s; }
+        .floating-text:nth-child(2) { top: 25%; right: 15%; animation-delay: 2s; }
+        .floating-text:nth-child(3) { bottom: 30%; left: 10%; animation-delay: 4s; }
+        .floating-text:nth-child(4) { top: 50%; right: 25%; animation-delay: 6s; }
+        .floating-text:nth-child(5) { bottom: 15%; right: 20%; animation-delay: 8s; }
+        .floating-text:nth-child(6) { top: 70%; left: 30%; animation-delay: 10s; }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(5deg); }
+        }
+
+        /* Mission Section */
+        .mission {
+            background: white;
+            border-radius: 20px;
+            padding: 60px 5%;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
+            margin-bottom: 50px;
+            font-weight: 400;
+            letter-spacing: 0.05em;
+        }
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .card {
+            background: var(--off-white);
+            padding: 40px 30px;
+            border-radius: 16px;
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--sage);
+            font-weight: 600;
+        }
+
+        .card p {
+            font-size: 0.95rem;
+            color: rgba(46, 52, 64, 0.8);
+            line-height: 1.7;
+        }
+
+        /* Languages Section */
+        .languages {
+            text-align: center;
+        }
+
+        .lang-scroll {
+            overflow-x: auto;
+            white-space: nowrap;
+            padding: 30px 0;
+            scrollbar-width: thin;
+            scrollbar-color: var(--sage) var(--light-gray);
+        }
+
+        .lang-scroll::-webkit-scrollbar {
+            height: 6px;
+        }
+
+        .lang-scroll::-webkit-scrollbar-track {
+            background: var(--light-gray);
+            border-radius: 10px;
+        }
+
+        .lang-scroll::-webkit-scrollbar-thumb {
+            background: var(--sage);
+            border-radius: 10px;
+        }
+
+        .lang-item {
+            display: inline-block;
+            font-size: clamp(1.2rem, 2.5vw, 2rem);
+            padding: 15px 25px;
+            margin: 0 10px;
+            color: var(--navy);
+            opacity: 0.7;
+            transition: opacity 0.3s;
+        }
+
+        .lang-item:hover {
+            opacity: 1;
+            color: var(--sage);
+        }
+
+        .lang-note {
+            margin-top: 30px;
+            font-size: 1rem;
+            color: rgba(46, 52, 64, 0.7);
+            line-height: 1.8;
+        }
+
+        /* Activities Section */
+        .activities {
+            background: white;
+            border-radius: 20px;
+        }
+
+        .activity-list {
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+            margin-top: 40px;
+        }
+
+        .activity-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 25px;
+        }
+
+        .activity-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--sage), var(--dusty-pink));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            flex-shrink: 0;
+        }
+
+        .activity-content h3 {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .activity-content p {
+            color: rgba(46, 52, 64, 0.75);
+            font-size: 0.95rem;
+        }
+
+        /* Join Section */
+        .join {
+            text-align: center;
+        }
+
+        .steps {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin: 50px 0;
+            flex-wrap: wrap;
+        }
+
+        .step {
+            flex: 1;
+            min-width: 200px;
+            max-width: 300px;
+        }
+
+        .step-number {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            color: var(--sage);
+            margin-bottom: 15px;
+            opacity: 0.5;
+        }
+
+        .step h3 {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .step p {
+            font-size: 0.9rem;
+            color: rgba(46, 52, 64, 0.7);
+        }
+
+        .reassurance {
+            background: var(--light-gray);
+            padding: 30px;
+            border-radius: 12px;
+            margin: 40px 0;
+            font-size: 0.95rem;
+            color: rgba(46, 52, 64, 0.8);
+        }
+
+        /* Form Section */
+        .form-section {
+            background: var(--light-gray);
+        }
+
+        .form-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: white;
+            padding: 50px 40px;
+            border-radius: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 30px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: 600;
+            color: var(--navy);
+        }
+
+        .form-group .optional {
+            font-weight: 400;
+            font-size: 0.85rem;
+            color: rgba(46, 52, 64, 0.5);
+            margin-left: 5px;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid var(--light-gray);
+            border-radius: 10px;
+            font-size: 1rem;
+            font-family: 'Noto Sans JP', sans-serif;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--sage);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .checkbox-group {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .checkbox-item input[type="checkbox"] {
+            width: auto;
+            cursor: pointer;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 18px;
+            background: linear-gradient(135deg, var(--sage), var(--dusty-pink));
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: opacity 0.3s;
+        }
+
+        .submit-btn:hover {
+            opacity: 0.9;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--navy);
+            color: white;
+            padding: 50px 5%;
+            text-align: center;
+        }
+
+        footer .disclaimer {
+            font-size: 0.9rem;
+            opacity: 0.7;
+            margin-bottom: 20px;
+        }
+
+        footer .social {
+            margin: 20px 0;
+        }
+
+        footer .social a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            opacity: 0.8;
+            transition: opacity 0.3s;
+        }
+
+        footer .social a:hover {
+            opacity: 1;
+        }
+
+        footer .welcome {
+            margin-top: 30px;
+            font-size: 0.85rem;
+            opacity: 0.5;
+            letter-spacing: 0.15em;
+        }
+
+        @media (max-width: 768px) {
+            .hero {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .hero-visual {
+                height: 300px;
+                margin-top: 40px;
+            }
+
+            section {
+                padding: 60px 5%;
+            }
+
+            .activity-item {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .steps {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>あの国が好き。<br>現地の人と喋ってみたい。<br>でも二外だけじゃ学びきれない。</h1>
+            <p class="subtitle">非公認インカレ言語愛好会</p>
+            <p class="tagline">Languages without borders</p>
+        </div>
+        <div class="hero-visual">
+            <div class="floating-text">Hello</div>
+            <div class="floating-text">こんにちは</div>
+            <div class="floating-text">Bonjour</div>
+            <div class="floating-text">안녕하세요</div>
+            <div class="floating-text">مرحبا</div>
+            <div class="floating-text">Hola</div>
+        </div>
+    </section>
+
+    <!-- Mission Section -->
+    <section class="mission">
+        <h2 class="section-title">参加してくれる皆さんと一緒にやりたいこと</h2>
+        <div class="cards">
+            <div class="card">
+                <h3>Explore</h3>
+                <p>世界中の現存言語に触れる。得意苦手も関係なく、まずやってみる。</p>
+            </div>
+            <div class="card">
+                <h3>Share</h3>
+                <p>他の人の学びを「語る・聴く」。それぞれの言語体験を自由に共有する場所。</p>
+            </div>
+            <div class="card">
+                <h3>Respect</h3>
+                <p>正解や優劣を持ち込まない。すべての言語に敬意を持って接する。</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Languages Section -->
+    <section class="languages">
+        <h2 class="section-title">扱う言語たち</h2>
+        <div class="lang-scroll">
+            <span class="lang-item">日本語</span>
+            <span class="lang-item">English</span>
+            <span class="lang-item">Français</span>
+            <span class="lang-item">العربية</span>
+            <span class="lang-item">한국어</span>
+            <span class="lang-item">中文</span>
+            <span class="lang-item">Español</span>
+            <span class="lang-item">বাংলা</span>
+            <span class="lang-item">Swahili</span>
+            <span class="lang-item">Türkçe</span>
+            <span class="lang-item">Esperanto</span>
+            <span class="lang-item">Português</span>
+            <span class="lang-item">Русский</span>
+            <span class="lang-item">ไทย</span>
+            <span class="lang-item">and more....</span>
+        </div>
+        <div class="lang-note">
+            有名・無名、得意・初心者は問いません。<br>
+            「気になる」が参加資格です。<br>
+            ネイティブである必要もありません。
+        </div>
+    </section>
+
+    <!-- Activities Section -->
+    <section class="activities">
+        <h2 class="section-title">活動例</h2>
+        <div class="activity-list">
+            <div class="activity-item">
+                <div class="activity-icon"></div>
+                <div class="activity-content">
+                    <h3>言語雑談会</h3>
+                    <p>気になる言語について自由に語り合います。文法、発音、歴史、文化、何でもOK。</p>
+                </div>
+            </div>
+            <div class="activity-item">
+                <div class="activity-icon"></div>
+                <div class="activity-content">
+                    <h3>サークル内サークル</h3>
+                    <p>複数人が同じ参考書に興味がある場合、各々で時間を合わせてプログラムを組んでみる。</p>
+                </div>
+            </div>
+            <div class="activity-item">
+                <div class="activity-icon"></div>
+                <div class="activity-content">
+                    <h3>翻訳・比較遊び</h3>
+                    <p>同じフレーズを色々な言語で比べてみる。言語の面白さを発見する時間。</p>
+                </div>
+            </div>
+            <div class="activity-item">
+                <div class="activity-icon"></div>
+                <div class="activity-content">
+                    <h3>他サークル・個人との交流</h3>
+                    <p>他の言語系サークルや個人の言語学習者とのゆるやかな繋がり。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Join Section -->
+    <section class="join">
+        <h2 class="section-title">参加の仕方</h2>
+        <div class="steps">
+            <div class="step">
+                <div class="step-number">01</div>
+                <h3>フォーム送信</h3>
+                <p>下のフォームから登録</p>
+            </div>
+            <div class="step">
+                <div class="step-number">02</div>
+                <h3>連絡</h3>
+                <p>LINE / Discord でご案内</p>
+            </div>
+            <div class="step">
+                <div class="step-number">03</div>
+                <h3>参加</h3>
+                <p>聞くだけ参加もOK</p>
+            </div>
+        </div>
+        <div class="reassurance">
+            途中離脱OK / 見学歓迎 / 強制なし<br>
+            自分のペースで関わっていただけます。
+        </div>
+    </section>
+
+    <!-- Form Section -->
+    <section class="form-section">
+        <h2 class="section-title">参加登録</h2>
+        <div class="form-container" style="text-align: center;">
+            <p style="margin-bottom: 30px; font-size: 0.95rem; color: rgba(46,52,64,0.75);">
+                参加登録は Google フォームにて受け付けています。<br>
+                下のボタンからご回答ください。
+            </p>
+
+            <button
+                type="button"
+                class="submit-btn"
+                onclick="window.open(
+                  'https://docs.google.com/forms/d/e/1FAIpQLScuaDKCdLeZf0tgZY1z55bo1GdWVCJBVp9lmKA6f-9n9A-k5w/viewform',
+                  '_blank'
+                )"
+            >
+                Googleフォームで参加登録する
+            </button>
+
+            <p style="margin-top: 20px; font-size: 0.85rem; color: rgba(46,52,64,0.6);">
+                ※ 回答内容は運営以外には公開されません
+            </p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p class="disclaimer">
+            ※ これは非公認インカレです。<br>
+            特定の大学や団体に所属するものではありません。
+        </p>
+        <div class="social">
+            <a href="#">Instagram</a>
+            <a href="#">X (Twitter)</a>
+        </div>
+        <p class="welcome">
+            WELCOME · BIENVENUE · 환영합니다 · مرحبا · BIENVENIDO
+        </p>
+    </footer>
+
+    <script>
+        // Smooth scroll for internal links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
